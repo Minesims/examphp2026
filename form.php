@@ -7,6 +7,8 @@ $contact = null;
 if (isset($_GET['id'])) {
     $contact = getContact($pdo, $_GET['id']);
 }
+
+// condition si le name du formulaire renvoie 'create'
 if (isset($_POST['create'])) {
     $data = [$_POST['name'], $_POST['email']];
     if (verifyToken($_POST['token'])) {
@@ -16,6 +18,8 @@ if (isset($_POST['create'])) {
 if (isset($_GET['id'])) {
     $contact = getContact($pdo, $_GET['id']);
 }
+
+// Condition si le name du formulaire renvoie 'update'
 if (isset($_POST['update'])) {
     $data = ["name"=>$_POST['name'], "email"=>$_POST['email']];
     if (verifyToken($_POST['token'])) {
