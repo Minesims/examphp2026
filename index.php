@@ -2,7 +2,12 @@
 require 'config.php';
 require 'functions.php';
 
+if (isset($_POST['delete'])) {
+    $id = $_POST['id'];
+    $contact = deleteContact($pdo, $id);
+}
 $contacts = getContacts($pdo);
+
 $token = generateToken();
 ?>
 

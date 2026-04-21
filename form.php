@@ -7,6 +7,21 @@ $contact = null;
 if (isset($_GET['id'])) {
     $contact = getContact($pdo, $_GET['id']);
 }
+if (isset($_POST['create'])) {
+    $data = [$_POST['name'], $_POST['email']];
+    if (verifyToken($_POST['token'])) {
+        addContact($pdo, $data);
+    }
+}
+if (isset($_GET['id'])) {
+    $contact = getContact($pdo, $_GET['id']);
+}
+if (isset($_POST['update'])) {
+    $data = ["name"=>$_POST['name'], "email"=>$_POST['email']];
+    if (verifyToken($_POST['token'])) {
+        updateContact($pdo, $_GET['id'], $data);
+    }
+}
 
 $token = generateToken();
 ?>
@@ -26,6 +41,7 @@ $token = generateToken();
 
     <button name="<?= $contact ? 'update' : 'create' ?>">Valider</button>
 </form>
+
 
 </body>
 </html>
